@@ -71,6 +71,13 @@ public class Part07ErrorsTest {
 
 		StepVerifier.create(flux)
 				.verifyError(Part07Errors.GetOutOfHereException.class);
+
+		Flux<User> flux1 = workshop.capitalizeMany(Flux.just(User.SKYLER, User.JESSE));
+
+		StepVerifier.create(flux1)
+				.expectNext(User.SKYLER)
+				.expectNext(User.JESSE)
+				.verifyComplete();
 	}
 
 }
